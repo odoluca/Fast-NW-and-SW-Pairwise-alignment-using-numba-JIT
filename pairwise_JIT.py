@@ -226,7 +226,7 @@ def localds(A, B, subs_mat, gap_open = -3, gap_extend = -1,penalize_extend_when_
     Score=D[max_n,max_m]
     return Score
     
-    @jit(nopython=True,cache=True)
+@jit(nopython=True,cache=True)
 def globalms_align(A, B, match , mismatch , gap_open , gap_extend ,penalize_extend_when_opening=False):
     #""" Initializes and fills up the matrices and calculates the alignment score.  """
     n = len(A)
