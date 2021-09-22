@@ -672,6 +672,7 @@ def localds_align(A, B, subs_mat, gap_open=-3, gap_extend=-1, penalize_extend_wh
 
 
 
+# def report_alignment(input,mol_type="DNA",alphabet="auto"):
 def report_alignment(input,mol_type="DNA",alphabet="auto"):
     # print(type(input))
     if type(input)==tuple:
@@ -686,25 +687,30 @@ def report_alignment(input,mol_type="DNA",alphabet="auto"):
     #     else:
     #         mol_type="DNA"
 
-    if mol_type=="DNA":
-        _alphabet = "TAGCN"
-        if alphabet != "auto": _alphabet = alphabet
-        conversion_dict = dict(zip(range(-1,5),"-"+_alphabet))
+    # if mol_type=="DNA":
+    #     _alphabet = "TAGCN"
+    #     if alphabet != "auto": _alphabet = alphabet
+    #     conversion_dict = dict(zip(range(-1,5),"-"+_alphabet))
 
-        # dictionary={0:"T",1:"A",2:"G",3:"C",4:"N",-1:"-"}
-    if mol_type=="RNA":
-        _alphabet = "UAGCN"
-        if alphabet != "auto": _alphabet = alphabet
-        conversion_dict = dict(zip(range(-1,5),"-"+_alphabet))
+    #     # dictionary={0:"T",1:"A",2:"G",3:"C",4:"N",-1:"-"}
+    # if mol_type=="RNA":
+    #     _alphabet = "UAGCN"
+    #     if alphabet != "auto": _alphabet = alphabet
+    #     conversion_dict = dict(zip(range(-1,5),"-"+_alphabet))
 
-        # dictionary = {0: "U", 1: "A", 2: "G", 3: "C", 4: "N", -1: "-"}
-    if mol_type=="Protein":
-        _alphabet = "ARNDCQEGHILKMFPSTWYVBZX"
-        if alphabet != "auto": _alphabet = alphabet
-        conversion_dict = dict(zip(range(-1,len(_alphabet)),"-"+_alphabet))
+    #     # dictionary = {0: "U", 1: "A", 2: "G", 3: "C", 4: "N", -1: "-"}
+    # if mol_type=="Protein":
+    #     _alphabet = "ARNDCQEGHILKMFPSTWYVBZX"
+    #     if alphabet != "auto": _alphabet = alphabet
+    #     conversion_dict = dict(zip(range(-1,len(_alphabet)),"-"+_alphabet))
 
-    print("".join([conversion_dict[x] for x in a]))
-    print("".join([conversion_dict[x] for x in b]))
+    for i in range(len(a)):
+        if a[i]==-1: a[i]="-"
+    for i in range(len(b)):
+        if b[i] == -1: b[i] = "-"
+
+    print("".join(a))
+    print("".join(b))
     print(" score:",s)
 def generate_scoring_matrix(alphabet_size, match=1, mismatch=-1, gap_open=-3, gap_extend=-1):
     # generates numpy matrix. Matrix may be altered after.
